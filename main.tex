@@ -1,7 +1,66 @@
+% !TeX document-id = {d7bfea81-c3f6-4000-b3a4-ebfa033e41d4}
+% !TeX root = ./main.tex
+% !TEX program = pdflatex
+% !BIB program = biber
+% !TEX encoding = UTF-8 Unicode
+% !TEX options = --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"
 \documentclass[final]{kuee_en}
-% \usepackage{endfloat}
-% \usepackage[final]{hyperref}
+\usepackage[titletoc]{appendix}
+\usepackage{titlesec}
+% \titleformat{\chapter}[hang] 
+% {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{1em}{} 
+
+% citation
+\usepackage[final,breaklinks=true]{hyperref}
+\renewcommand*{\sectionautorefname}{Section}
+\renewcommand*{\chapterautorefname}{Chapter}
+%\renewcommand*{\equationautorefname}{Eqn.}
+% \usepackage{cleveref}
+
+\usepackage{pdflscape}
+
+\usepackage{siunitx} % SI units
+\sisetup{detect-all}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor,graphicx}
+\usepackage{subcaption}
+
+\usepackage{setspace}
+%\singlespacing
+%\onehalfspacing
+\setstretch{1.1}
+
+\usepackage{sectsty} % change section style
+%\allsectionsfont{\sffamily\bfseries}
+%\sectionfont{\noindent\textsc} % indent setting
+
+% \usepackage{paralist}
+% \usepackage{booktabs}
+%\usepackage{fancyhdr}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+%\usepackage{newtxtext, newtxmath}
+%\usepackage{tgbonum}
+
+% using modern biblatex
+\usepackage[sorting=none,
+    backend=biber,
+    bibencoding=utf8,
+    bibstyle=nature_kuee,
+    citestyle=numeric-comp,
+    doi=false,isbn=false,url=false,eprint=false]{biblatex}
+\bibliography{sample}
+
+
+% Please add the following required packages to your document preamble:
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+
 \title{An English \LaTeX{} Template for KUEE}
+\etitle{An English \LaTeX{} Template for KUEE}
 \eauthor{Denki Jiro} 
 \author{\cjk{電気　次郎}} % if no kanji name, remove \cjk env.
 \supervisor{\cjk{電気　太郎　教授}}
@@ -97,15 +156,19 @@ A tikz figure shown in Fig. \ref{fig:tikz}.
 \chapter{Lorem Ipsum}
 \lipsum[2-9]
 
-% Bibliography
-\bibliography{sample}
-\bibliographystyle{ieeetr}
 
 \begin{acknowledgements}
 \lipsum[2]
 \end{acknowledgements}
 
-\appendix
+\printbibliography[title=References,heading=bibintoc]
+
+\clearpage % ensure all floats are processed
+\processdelayedfloats
+\clearpage
+
+
+\begin{appendices}
 \chapter{Versions}
 \begin{description}
   \item[2019] 1st version by Zhenghao Yin, Takeuchi lab.
@@ -148,5 +211,8 @@ Default parameters used in this template is shown in \ref{tab:text},\ref{tab:fig
     \end{tabular}
   \end{center}
 \end{table}
+\end{appendices}
+
 
 \end{document}
+

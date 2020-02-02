@@ -3,16 +3,17 @@
 
 % Packages
 \RequirePackage{lipsum}
-\RequirePackage{xcolor,graphicx,tikz}
+\RequirePackage{xcolor,graphicx,tikz,pgfplots}
 
 \RequirePackage{physics}
 \RequirePackage[version=4]{mhchem} % chemical formula, \ce{H2O}
-\RequirePackage{siunitx} % SI units
 
+%CJK
 \RequirePackage{CJKutf8}
 \newcommand*{\cjk}[1]{%
   \begin{CJK}{UTF8}{ipxm}#1\end{CJK}
 }
+
 
 % set lengths
 \setlength{\topmargin}{0mm} 
@@ -27,6 +28,7 @@
 
 \LoadClass[12pt,a4paper]{report}
 
+% define title
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
 \newcommand*{\@supervisor}{\texttt{\string\supervisor} currently not set. Please fix this.}
 \newcommand*{\school}[1]{\gdef\@school{#1}}
@@ -34,6 +36,7 @@
 \newcommand*{\depart}[1]{\gdef\@depart{#1}}
 \newcommand*{\@depart}{\texttt{\string\depart} currently not set. Please fix this.}
 \newcommand*{\eauthor}[1]{\gdef\@eauthor{#1}}
+\newcommand*{\etitle}[1]{\gdef\@etitle{#1}}
 
 % title set
 \renewcommand{\maketitle}{%
@@ -55,12 +58,9 @@
 \end{titlepage}   
 }
 
-\RequirePackage[final]{hyperref}
-\RequirePackage[nomarkers]{endfloat}
-
 % abstract page same as japanese version
 \renewcommand*{\abstractname}{
-    {\Large\bfseries\@title}
+    {\Large\bfseries\@etitle}
   \begin{flushright}
     \@eauthor
   \end{flushright}
@@ -77,7 +77,8 @@
 \@restonecolfalse
 \if@twocolumn\@restonecoltrue\onecolumn\fi
 \chapter*{\contentsname\@mkboth{\contentsname}{\contentsname}}%
-\@starttoc{toc}\if@restonecol\twocolumn\fi
+\@starttoc{toc}
+\if@restonecol\twocolumn\fi
 \newpage
 \egroup
 \setcounter{page}{1}
@@ -90,7 +91,27 @@
 }{%
 }
 
-\renewcommand{\bibname}{References}
+\RequirePackage{etoolbox}
+\RequirePackage[nomarkers, 	
+%		figuresonly,
+%		tablesonly,
+		nolists]{endfloat}
+\makeatletter
+\@ifpackageloaded{endfloat}
+{
+	\efloat@condopen{fff}
+	\pretocmd\@chapter{\immediate\write\efloat@postfff{\noexpand\stepcounter{chapter}}}{}{\fail}
+	\AtBeginFigures{\setcounter{chapter}{0}}
+}{}
+\makeatother
 
+\makeatletter
+\@ifpackageloaded{endfloat}
+{
+	\efloat@condopen{ttt}
+	\pretocmd\@chapter{\immediate\write\efloat@postttt{\noexpand\stepcounter{chapter}}}{}{\fail}
+	\AtBeginTables{\setcounter{chapter}{0}}
+}{}
+\makeatother\renewcommand{\efloatseparator}{\vfill}
 
 \endinput
