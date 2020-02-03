@@ -1,72 +1,30 @@
 % !TeX document-id = {d7bfea81-c3f6-4000-b3a4-ebfa033e41d4}
 % !TeX root = ./main.tex
-% !TEX program = pdflatex
+% !TEX program = xelatex
 % !BIB program = biber
 % !TEX encoding = UTF-8 Unicode
 % !TEX options = --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error "%DOC%"
-\documentclass[final]{kuee_en}
-\usepackage[titletoc]{appendix}
-\usepackage{titlesec}
-% \titleformat{\chapter}[hang] 
-% {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{1em}{} 
+\documentclass{kuee_en}
 
-% citation
-\usepackage[final,breaklinks=true]{hyperref}
-\renewcommand*{\sectionautorefname}{Section}
-\renewcommand*{\chapterautorefname}{Chapter}
-%\renewcommand*{\equationautorefname}{Eqn.}
-% \usepackage{cleveref}
-
-\usepackage{pdflscape}
-
-\usepackage{siunitx} % SI units
-\sisetup{detect-all}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{xcolor,graphicx}
-\usepackage{subcaption}
-
-\usepackage{setspace}
-%\singlespacing
-%\onehalfspacing
-\setstretch{1.1}
-
-\usepackage{sectsty} % change section style
-%\allsectionsfont{\sffamily\bfseries}
-%\sectionfont{\noindent\textsc} % indent setting
-
-% \usepackage{paralist}
-% \usepackage{booktabs}
-%\usepackage{fancyhdr}
-
-\usepackage[utf8]{inputenc}
+% if your prefer Times New Roman in Windows, pleas uncomment the below two lines.
+% \usepackage{fontspec}
+% \setmainfont{Times New Roman}
+% and comment these two line
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
-%\usepackage{newtxtext, newtxmath}
-%\usepackage{tgbonum}
+
 
 % using modern biblatex
-\usepackage[sorting=none,
-    backend=biber,
-    bibencoding=utf8,
-    bibstyle=nature_kuee,
-    citestyle=numeric-comp,
-    doi=false,isbn=false,url=false,eprint=false]{biblatex}
 \bibliography{sample}
-
-
-% Please add the following required packages to your document preamble:
-\usepackage[normalem]{ulem}
-\useunder{\uline}{\ul}{}
 
 \title{An English \LaTeX{} Template for KUEE}
 \etitle{An English \LaTeX{} Template for KUEE}
 \eauthor{Denki Jiro} 
-\author{\cjk{電気　次郎}} % if no kanji name, remove \cjk env.
-\supervisor{\cjk{電気　太郎　教授}}
-\school{\cjk{京都大学大学院工学研究科}}
-\depart{\cjk{電子工学専攻}}
-\date{\cjk{令和2年2月1日}}
+\author{{電気　次郎}} % if no kanji name, remove  env.
+\supervisor{{電気　太郎　教授}}
+\school{{京都大学大学院工学研究科}}
+\depart{{電子工学専攻}}
+\date{{令和2年2月1日}}
 
 \begin{document}
 \maketitle
@@ -86,36 +44,29 @@ This template is designed for the english writer in KUEE.
 
 \section{CJK Languages}
 
-CJKutf8 is used in this paper to generate the cover page and the default font is Meicho.
-\begin{quote}
-    \cjk{電気電子工学は現代のあらゆる産業や社会生活の基盤として欠くことのできない科学技術となっています}
-\end{quote}
-If necessary, please include the full environment to write Chinese or Korean.
+CJKutf8 is used in this paper to generate the cover page and the default font is Meicho font.
+
 
 \begin{quote}
-    \begin{CJK}{UTF8}{gbsn}
-    电气电子工程已成为所有现代工业和社会生活的基础不可或缺的科学技术
-    \end{CJK}
-    \newline
-    \begin{CJK}{UTF8}{nanummj}
-    전기 · 전자 공학은 현대의 모든 산업과 사회 생활의 기반으로서 빼놓을 수없는 과학 기술되어 있습니다
-    \end{CJK} 
+電気電子工学は現代のあらゆる産業や社会生活の基盤として欠くことのできない科学技術となっています
 \end{quote}
 
+\section{Formula for scientists}
 
-\section{Fomular for Scientists}
-Maxwell Equations
+Multiple-line aligned example, Maxwell Equations
 \begin{align*}
     \div{\vb{D}} &= 0 \\
     \div{\vb{B}} &= 0 \\
     \curl{\vb{E}} &= -\pdv{\vb{B}}{t} \\
     \curl{\vb{H}} &= \pdv{\vb{D}}{t}
 \end{align*}
-Schroedinger Equation
+
+Schr\"{0}edinger Equation
 $$
     i\hbar \pdv{\ket{\varphi}}{t} = \mathcal{H} \ket{\varphi}
 $$
-Chemical equation
+
+Chemical equation example
 $$
     2\ce{H2}+\ce{O2} = 2\ce{H2O}
 $$
@@ -125,8 +76,9 @@ Cite this paper
 \cite{Yang2007}
 
 \section{Figure and Graph}
-A tikz figure shown in Fig. \ref{fig:tikz}.
-\begin{figure}[!h]
+A tikz figure shown in Fig. \ref{fig:tikz} and automatically floated to the file end.
+
+\begin{figure}
     \centering
     \begin{tikzpicture}
     % horizontal axis
@@ -153,30 +105,9 @@ A tikz figure shown in Fig. \ref{fig:tikz}.
   \label{fig:tikz}
 \end{figure}
 
-\chapter{Lorem Ipsum}
-\lipsum[2-9]
 
-
-\begin{acknowledgements}
-\lipsum[2]
-\end{acknowledgements}
-
-\printbibliography[title=References,heading=bibintoc]
-
-\clearpage % ensure all floats are processed
-\processdelayedfloats
-\clearpage
-
-
-\begin{appendices}
-\chapter{Versions}
-\begin{description}
-  \item[2019] 1st version by Zhenghao Yin, Takeuchi lab.
-\end{description}
-
-
-\chapter{Layout and Parameters}
-Default parameters used in this template is shown in \ref{tab:text},\ref{tab:fig}.
+\section{Layout and Parameters}
+Default parameters used in this template is shown in Tab.\ref{tab:text}, Tab.\ref{tab:fig}.
 
 \begin{table}
   \caption{Default layout}\label{tab:text}
@@ -211,6 +142,29 @@ Default parameters used in this template is shown in \ref{tab:text},\ref{tab:fig
     \end{tabular}
   \end{center}
 \end{table}
+
+
+\chapter{Lorem}
+\lipsum[2-5]
+
+\chapter{Ipsum}
+\lipsum[4-8]
+
+\begin{acknowledgements}
+\lipsum[2]
+\end{acknowledgements}
+
+\printbibliography[title=References,heading=bibintoc]
+
+\clearpage % ensure all floats are processed
+\processdelayedfloats
+\clearpage
+
+\begin{appendices}
+\chapter{Versions}
+\begin{description}
+  \item[2019] 1st version by Zhenghao Yin, Takeuchi lab.
+\end{description}
 \end{appendices}
 
 

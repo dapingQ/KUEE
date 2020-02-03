@@ -1,20 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesClass{kuee_en}[English Latex Template used in KUEE]
 
-% Packages
-\RequirePackage{lipsum}
-\RequirePackage{xcolor,graphicx,tikz,pgfplots}
-
-\RequirePackage{physics}
-\RequirePackage[version=4]{mhchem} % chemical formula, \ce{H2O}
-
-%CJK
-\RequirePackage{CJKutf8}
-\newcommand*{\cjk}[1]{%
-  \begin{CJK}{UTF8}{ipxm}#1\end{CJK}
-}
-
-
 % set lengths
 \setlength{\topmargin}{0mm} 
 \setlength{\headheight}{12pt} 
@@ -39,18 +25,22 @@
 \newcommand*{\etitle}[1]{\gdef\@etitle{#1}}
 
 % title set
+\RequirePackage{xeCJK}
+\setCJKmainfont{IPAMincho}
+\setCJKsansfont{IPAGothic}
+\setCJKmonofont{IPAGothic}
 \renewcommand{\maketitle}{%
 \begin{titlepage}
 	\centering
       \unitlength = 1cm
       \begin{picture}(0,0)(0.5,10)
-        \put(2.5,8){\makebox(0,0)[b]{\makebox[8cm]{\Huge \cjk{修\hfil士\hfil論\hfil文}}}}%
-        \put(-2.5,5.5){\makebox(0,0)[r]{\makebox[2cm]{\cjk{題\hfil 目}}}}%
+        \put(2.5,8){\makebox(0,0)[b]{\makebox[8cm]{\Huge 修 \hfil 士 \hfil 論 \hfil 文}}}%
+        \put(-2.5,5.5){\makebox(0,0)[r]{\makebox[2cm]{{題 \hfil 目}}}}%
         \put(2.5,5.5){\makebox(0,0){\parbox{10cm}{\center \LARGE \@title}}}%
-        \put(-2.5,3){\makebox(0,0)[r]{\makebox[2cm]{\cjk{指\hfil 導\hfil 教\hfil 員}}}}%
+        \put(-2.5,3){\makebox(0,0)[r]{\makebox[2cm]{{指\hfil 導\hfil 教\hfil 員}}}}%
         \put(2.5,3){\makebox(0,0){\parbox{8cm}{\center \LARGE \@supervisor}}}%
         \put(2.5,-6.5){\makebox(0,0)[t]{\@school\ \@depart}}%
-        \put(-0.5,-8.5){\makebox(0,0)[rb]{\makebox[1.5cm]{\cjk{氏\hfil 名}}}}%
+        \put(-0.5,-8.5){\makebox(0,0)[rb]{\makebox[1.5cm]{{氏\hfil 名}}}}%
         \put(2.5,-8.7){\makebox(0,0)[b]{\LARGE \underline{\@author}}}%
         \put(2.5,-10){\makebox(0,0)[t]{\large \@date}}%
       \end{picture}
@@ -91,6 +81,7 @@
 }{%
 }
 
+% endfloat
 \RequirePackage{etoolbox}
 \RequirePackage[nomarkers, 	
 %		figuresonly,
@@ -104,7 +95,6 @@
 	\AtBeginFigures{\setcounter{chapter}{0}}
 }{}
 \makeatother
-
 \makeatletter
 \@ifpackageloaded{endfloat}
 {
@@ -113,5 +103,24 @@
 	\AtBeginTables{\setcounter{chapter}{0}}
 }{}
 \makeatother\renewcommand{\efloatseparator}{\vfill}
+
+% Packages
+\RequirePackage{lipsum}
+\RequirePackage{xcolor,graphicx,tikz,pgfplots}
+\pgfplotsset{compat=1.7}
+\RequirePackage[titletoc]{appendix}
+\RequirePackage[final,breaklinks=true]{hyperref}
+\renewcommand*{\sectionautorefname}{Section}
+\renewcommand*{\chapterautorefname}{Chapter}
+\RequirePackage{physics}
+\RequirePackage[version=4]{mhchem} % chemical formula, \ce{H2O}
+
+
+\RequirePackage[sorting=none,
+    backend=biber,
+    bibencoding=utf8,
+    bibstyle=nature-kuee,
+    citestyle=numeric-comp,
+    doi=false,isbn=false,url=false,eprint=false]{biblatex}
 
 \endinput
