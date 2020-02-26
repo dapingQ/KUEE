@@ -13,6 +13,11 @@
 \usepackage[T1]{fontenc}
 \usepackage{mathptmx}
 
+\usepackage{setspace}
+%\singlespacing % 43 lines per page
+\setstretch{1.2} % 36 lines per page
+%\onehalfspacing % 33 line per page
+
 
 % using modern biblatex
 \bibliography{sample}
@@ -35,41 +40,47 @@
 
 \tableofcontents
 
-\chapter{Introduction}
-This template is designed for the english writer in KUEE.
-
-\lipsum[3-7]
-
 \chapter{Usage}
+
+This template is designed for the english writer for master thesis in KUEE. All the formats are referred to the Japanese guide of master thesis.\footnote{修士論文作成規定および手引, 2019年12月13日改定}
+In the case of PhD students, it is free to use any \LaTeX ~template as I know in KUEE. For undergraduate students, I think only Japanese is acceptable. If necessary, it easy to change the title in \verb|kuee_en.cls| file.
+\footnote{Hint, line 37}
+
+The default compiler of this template is \verb|xelateX| as magic commands are defined in the file head. This is due to the use of \verb|xeCJK| and \verb|fontspec| packages. If you want old-fashion \verb|pdflatex| or \verb|latex|, please note the package compatibility.
+
+\section{Line spacing}
+The required lines in Japanese version is about 32. While default \verb|a4paper| using single spacing in \LaTeX means more than 40 lines per page. Despite the language difference, 1.2 line spacing is recommended. You can also change this value in the macro of package \verb|setspace|. You can check it with contents in chapter 2.
+
+
 
 \section{CJK Languages}
 
-CJKutf8 is used in this paper to generate the cover page and the default font is Meicho font.
-
-
+\verb|xeCJK| is used in this paper to generate the cover page. Default font is Meicho font.
+This is an example of quotation.
 \begin{quote}
 電気電子工学は現代のあらゆる産業や社会生活の基盤として欠くことのできない科学技術となっています
 \end{quote}
 
 \section{Formula for scientists}
-
+A modern package \verb|physics| is added into the style file. It is much easier to give some fractions and notation in physics.
+ 
 Multiple-line aligned example, Maxwell Equations
-\begin{align*}
+\begin{align}
     \div{\vb{D}} &= 0 \\
     \div{\vb{B}} &= 0 \\
     \curl{\vb{E}} &= -\pdv{\vb{B}}{t} \\
     \curl{\vb{H}} &= \pdv{\vb{D}}{t}
-\end{align*}
+\end{align}
 
-Schr\"{0}edinger Equation
-$$
-    i\hbar \pdv{\ket{\varphi}}{t} = \mathcal{H} \ket{\varphi}
-$$
+Schr\"{o}edinger Equation
+\begin{equation}
+	i\hbar \pdv{\ket{\varphi}}{t} = \mathcal{H} \ket{\varphi}
+\end{equation}
 
 Chemical equation example
-$$
+\begin{equation*}
     2\ce{H2}+\ce{O2} = 2\ce{H2O}
-$$
+\end{equation*}
 
 \section{Reference and Citation}
 Cite this paper
@@ -144,11 +155,9 @@ Default parameters used in this template is shown in Tab.\ref{tab:text}, Tab.\re
 \end{table}
 
 
-\chapter{Lorem}
-\lipsum[2-5]
+\chapter{Lorem Ipsum}
+\lipsum[1-10]
 
-\chapter{Ipsum}
-\lipsum[4-8]
 
 \begin{acknowledgements}
 \lipsum[2]
