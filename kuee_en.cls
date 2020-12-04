@@ -48,7 +48,7 @@
 \end{titlepage}   
 }
 
-% abstract page same as japanese version
+% abstract page same as Japanese version
 \renewcommand*{\abstractname}{
     {\Large\bfseries\@etitle}
   \begin{flushright}
@@ -114,7 +114,6 @@
 \renewcommand*{\chapterautorefname}{Chapter}
 \RequirePackage{physics}
 \RequirePackage[version=4]{mhchem} % chemical formula, \ce{H2O}
-
 
 \RequirePackage[sorting=none,
     backend=biber,

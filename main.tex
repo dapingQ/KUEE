@@ -14,56 +14,66 @@
 \usepackage{mathptmx}
 
 \usepackage{setspace}
-%\singlespacing % 43 lines per page
+% set line spacing here, if you want change the line number per page
 \setstretch{1.2} % 36 lines per page
+%\singlespacing % 43 lines per page
 %\onehalfspacing % 33 line per page
-
 
 % using modern biblatex
 \bibliography{sample}
 
 \title{An English \LaTeX{} Template for KUEE}
 \etitle{An English \LaTeX{} Template for KUEE}
-\eauthor{Denki Jiro} 
-\author{{電気　次郎}} % if no kanji name, remove  env.
+\eauthor{Denki Jiro} % english name, used in abstract page
+\author{{電気　次郎}} % name shown in the cover, same as \eauthor if you don't have a kanji name 
 \supervisor{{電気　太郎　教授}}
 \school{{京都大学大学院工学研究科}}
 \depart{{電子工学専攻}}
+% \depart{{電気工学専攻}}
 \date{{令和2年2月1日}}
 
 \begin{document}
 \maketitle
 
+% abstract here
 \begin{abstract}
     \lipsum[1]
 \end{abstract}
 
+% generate the contents
 \tableofcontents
 
-\chapter{Usage}
+\chapter{How to use}
 
-This template is designed for the english writer for master thesis in KUEE. All the formats are referred to the Japanese guide of master thesis.\footnote{修士論文作成規定および手引, 2019年12月13日改定}
-In the case of PhD students, it is free to use any \LaTeX ~template as I know in KUEE. For undergraduate students, I think only Japanese is acceptable. If necessary, it easy to change the title in \verb|kuee_en.cls| file.
-\footnote{Hint, line 37}
+This template is designed for the english writer for master thesis in KUEE. All the formats are referred to the Japanese guide of master thesis\cite{tebiki}.
+% \footnote{修士論文作成規定および手引, 2019年12月13日改定}
+In the case of PhD students, it is free to use any \LaTeX ~template as I know in KUEE. For undergraduate students, I think only Japanese is acceptable. If necessary, it is easy to change the title name in \verb|kuee_en.cls|
+\footnote{Hint, line 37}.
 
-The default compiler of this template is \verb|xelateX| as magic commands are defined in the file head. This is due to the use of \verb|xeCJK| and \verb|fontspec| packages. If you want old-fashion \verb|pdflatex| or \verb|latex|, please note the package compatibility.
+The default compiler of this template is \verb|xelatex| as magic commands are defined in this file head. This is due to the use of \verb|xeCJK| and \verb|fontspec| packages. If you want the old-fashioned \verb|pdflatex| or \verb|latex|, please note the package compatibility, which do not support the Japanese cover.
 
 \section{Line spacing}
-The required lines in Japanese version is about 32. While default \verb|a4paper| using single spacing in \LaTeX means more than 40 lines per page. Despite the language difference, 1.2 line spacing is recommended. You can also change this value in the macro of package \verb|setspace|. You can check it with contents in chapter 2.
+The required line number per page in Japanese version\cite{tebiki} is about 32. While default \verb|a4paper| using single spacing in \LaTeX, means more than 40 lines per page. Despite the language difference, 1.2 line spacing is recommended.
 
+This value is adjustable in the macro of package \verb|setspace| if you like. 
+Set the linespacing in the file head and then check the line number with the text in Chapter 2.
 
+\section{CJK languages}
 
-\section{CJK Languages}
-
-\verb|xeCJK| is used in this paper to generate the cover page. Default font is Meicho font.
-This is an example of quotation.
+\verb|xeCJK| package is used in this paper to generate the cover page.
 \begin{quote}
-電気電子工学は現代のあらゆる産業や社会生活の基盤として欠くことのできない科学技術となっています
+電気・電子工学は現代のあらゆる産業や社会生活の基盤として欠くことのできない科学技術となっています。例えば，大規模集積回路（超LSI）や光・半導体デバイスを用いた各種の電子・情報・通信システム，ホームエレクトロニクス機器，ロボット・自動車・通信衛星・医療福祉機器等に搭載されている人工知能や制御システムなどはその代表としてあげられます。また，現代社会の主要なエネルギー源である電力の高効率で安定な供給に関する技術とともに，あらゆる電気・電子応用機器の高効率化や人間社会・地球環境との調和のための技術がますます重要になってきています。
 \end{quote}
+Except quotation, it requires \{\} to insert Japanese characters inline, like
+{電気・電子工学}. 
+Note, this is also important for reference. Add \{\} for any Japanese item in \verb|.bib| file if you want to cite them.
+
+The default font is Meicho font.
+Please note the Meicho font is only for Japanese characters, it may not work for the specific characters from Korean and Chinese. 
 
 \section{Formula for scientists}
-A modern package \verb|physics| is added into the style file. It is much easier to give some fractions and notation in physics.
- 
+The modern package \verb|physics| \footnote{See, http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/physics/physics.pdf} is required in the style file.
+
 Multiple-line aligned example, Maxwell Equations
 \begin{align}
     \div{\vb{D}} &= 0 \\
@@ -79,15 +89,18 @@ Schr\"{o}edinger Equation
 
 Chemical equation example
 \begin{equation*}
-    2\ce{H2}+\ce{O2} = 2\ce{H2O}
+    2\ce{H2}+\ce{O2} \longrightarrow 2\ce{H2O}
 \end{equation*}
 
-\section{Reference and Citation}
-Cite this paper
-\cite{Yang2007}
+\section{References and citation}
+The reference format is modified for the format required in KUEE based on the nature style defined in the \verb|nature-style.bbx|.  
 
-\section{Figure and Graph}
-A tikz figure shown in Fig. \ref{fig:tikz} and automatically floated to the file end.
+Cite this paper \cite{Kiyohara2020}, cite again \cite{Okano2015}, and cite several ones together \cite{Nagata2007, Sugiura2019}.
+
+\section{Figures and tables}
+All the figures and tables are automatically floated to the file end. Here is an example. And the comes with appendices.
+
+A tikz figure shown in Fig. \ref{fig:tikz}.
 
 \begin{figure}
     \centering
@@ -116,8 +129,6 @@ A tikz figure shown in Fig. \ref{fig:tikz} and automatically floated to the file
   \label{fig:tikz}
 \end{figure}
 
-
-\section{Layout and Parameters}
 Default parameters used in this template is shown in Tab.\ref{tab:text}, Tab.\ref{tab:fig}.
 
 \begin{table}
