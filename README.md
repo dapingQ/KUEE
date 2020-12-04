@@ -1,10 +1,12 @@
 # KUEE
-An English LaTeX Template for KUEE.
-Yon can create a project in [Overleaf](https://www.overleaf.com/) from this repo.
+An English LaTeX master thesis template for KUEE english writer.
 
-## Complier
+## How to use (Recommended)
+1. Sign up and Log in  [Overleaf](https://www.overleaf.com/) 2. New project by uploading the .zip file
+3. Set compiler as xelatex
+4. Begin writing
 
-- Magic commmand is used, default complier is `xelatex`
+## For LaTex user
+XeLatex + Biblatex
 
-## References
-- Changed into the required style for KUEE Japanese template based on `biblatex-nature` style
+> tested under Texlive 2019 fully installed
